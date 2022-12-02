@@ -20,6 +20,47 @@ router.post('/add', async (req, res, next) => {
 });
 
 
+router.get('/list', (req, res, next) => {
+
+    Student.find((err, response) => {
+        if (err) {
+            res.send(err)
+        } else {
+            res.send({status: 200, students: response})
+        }
+    })
+
+});
+
+router.get('/searchByFirstName', (req, res, next) => {
+
+    const firstName = req.query.studentFirstName;
+
+    Student.find({studentFirstName: firstName}, (err, response) => {
+        if (err) {
+            res.send(err)
+        } else {
+            res.send({status: 200, students: response})
+        }
+    });
+
+});
+
+router.get('/searchById', (req, res, next) => {
+
+    const idQuery = req.query.id;
+
+    Student.findById(idQuery, (err, response) => {
+        if (err) {
+            res.send(err)
+        } else {
+            res.send({status: 200, students: response})
+        }
+    });
+
+});
+
+
 
 
 module.exports = router;
