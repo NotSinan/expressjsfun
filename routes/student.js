@@ -61,6 +61,36 @@ router.get('/searchById', (req, res, next) => {
 });
 
 
+router.put('/update', (req, res, next) => {
+    const lastName = req.query.studentLastName;
+
+    Student.update({studentFirstName: "Jarvis"}, {studentLastName: lastName}, (err, response) => {
+        if (err) {
+            res.send(err)
+        } else {
+            res.send({status: 200, students: response})
+        }
+
+    })
+
+})
+
+
+router.put('/updateUser', (req, res, next) => {
+    const userId = req.query.userId;
+    const lastName = req.query.studentLastName;
+    Student.findByIdAndUpdate (userId, {studentLastName: lastName}, (err, response) => {
+        if (err) {
+            res.send(err)
+        } else {
+            res.send({status: 200, students: response})
+        }
+
+    })
+
+})
+
+
 
 
 module.exports = router;
