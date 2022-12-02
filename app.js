@@ -5,6 +5,13 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var mongoose = require('mongoose');
+mongoose.connect('mongodb://127.0.0.1:27017/test1')
+.then(() => {
+  console.log("connected")
+})
+.catch((error) => {
+  console.log(error);
+})
 var studentModel = require('./models/student.model');
 
 var indexRouter = require('./routes/index');
